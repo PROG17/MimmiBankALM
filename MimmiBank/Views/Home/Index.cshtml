@@ -8,10 +8,14 @@
     <hr />
     <table class="table table-striped">
         <thead>
-        <th>Customer number</th>
-        <th>Name</th>
-        <th>Account number</th>
-        <th>Amount</th></thead>
+            <tr>
+                <th>Customer number</th>
+                <th>Name</th>
+                <th>Account number</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        
         <tbody>
             @foreach (var cus in Model.Customers)
             {

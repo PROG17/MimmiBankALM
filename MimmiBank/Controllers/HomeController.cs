@@ -5,39 +5,32 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MimmiBank.Models;
+using MimmiBank.Repository;
+using MimmiBank.ViewModels;
 
 namespace MimmiBank.Controllers
 {
     public class HomeController : Controller
     {
+        private IBankRepository _bankRepository;
+        
+        public HomeController(IBankRepository bankRepository)
+        {
+            _bankRepository = bankRepository;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var model = new StartpageViewModel()
+            {
+                Customers = _bankRepository.GetListOfCustomers()
+            };
+
+
+
+            return View(model);
         }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        
     }
 }

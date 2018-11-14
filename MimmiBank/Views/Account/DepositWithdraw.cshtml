@@ -1,0 +1,36 @@
+﻿@model MimmiBank.ViewModels.DepositWithdrawViewModel
+
+@{
+    ViewData["Title"] = "DepositWithdraw";
+}
+
+<h2>DepositWithdraw</h2>
+
+
+<form>
+    <input type="text" asp-for="Account.Accountnumber" />
+    <input type="text" asp-for="Sum" />
+    <input type="submit" formaction="/account/withdraw" value="Withdraw" />
+    <input type="submit" formaction="/account/deposit" value="Deposit" />
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+</form>
+
+<div>
+    @if (Model.Account != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Account number</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>@Model.Account.Accountnumber</td>
+                <td>@Model.Account.Balance kr</td>
+            </tr>
+        </table>
+
+    }
+</div>

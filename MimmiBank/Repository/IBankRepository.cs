@@ -9,6 +9,7 @@ namespace MimmiBank.Repository
     public interface IBankRepository
     {
         List<Customer> GetListOfCustomers();
-
+        bool DepositAccount(double sum, Account account);
+        bool WithdrawAccount(double sum, Account account);
     }
 }

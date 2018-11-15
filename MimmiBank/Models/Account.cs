@@ -9,7 +9,8 @@ namespace MimmiBank.Models
     {
         public int Accountnumber { get; set; }
 
-        public double Amount { get; set; }
+        public double Balance { get; set; }
+
 
     }
 }

@@ -9,6 +9,26 @@ namespace MimmiBank.Repository
 {
     public class BankRepository : IBankRepository
     {
+
+
+        public bool DepositAccount(double sum, Account account)
+        {
+            account.Balance += sum;
+
+            return true;
+
+        }
+        public bool WithdrawAccount(double sum, Account account)
+        {
+            if (sum > account.Balance)
+            {
+                return false;
+            }
+            account.Balance -= sum;
+            return true;
+        }
+
+
         public List<Customer> GetListOfCustomers()
         {
             var customerList = new List<Customer>()
@@ -22,12 +42,12 @@ namespace MimmiBank.Repository
                        new Account
                        {
                            Accountnumber = 12345,
-                           Amount = 1259
+                           Balance = 1259
                        },
                         new Account
                        {
                            Accountnumber = 98765,
-                           Amount = 7609
+                           Balance = 7609
                        }
                     }
                 },
@@ -40,7 +60,7 @@ namespace MimmiBank.Repository
                        new Account
                        {
                            Accountnumber = 23456,
-                           Amount = 22998.4
+                           Balance = 22998.4
                        }
                     }
 
@@ -54,7 +74,7 @@ namespace MimmiBank.Repository
                        new Account
                        {
                            Accountnumber = 34567,
-                           Amount = 23.5
+                           Balance = 23.5
                        }
                     }
 
@@ -68,12 +88,12 @@ namespace MimmiBank.Repository
                        new Account
                        {
                            Accountnumber = 67899,
-                           Amount = 488
+                           Balance = 488
                        },
                          new Account
                        {
                            Accountnumber = 67897,
-                           Amount = 50000
+                           Balance = 50000
                        },
                     }
 

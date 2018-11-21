@@ -1,0 +1,43 @@
+﻿@model MimmiBank.ViewModels.TransferViewModel
+@{
+    ViewData["Title"] = "TransferToAccount";
+}
+
+<h2>Transfer</h2>
+<hr />
+<br />
+<br />
+
+
+<form>
+    <p><b>Transfer from account:</b></p><input type="text" asp-for="AccountOne.Accountnumber" />
+    <p><b>To account:</b> </p><input type="text" asp-for="AccountTwo.Accountnumber" />
+    <p><b>Amount:</b></p><input type="text" asp-for="Sum" />
+    <br />
+    <br />
+    <input type="submit" formaction="/Transfer/Transfer" value="Transfer" />
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+</form>
+<br />
+<br />
+<div>
+    @if (Model.AccountTwo != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>From account:</th>
+                    <th>To account:</th>
+                    <th>Current balance:</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>@Model.AccountOne.Accountnumber</td>
+                <td>@Model.AccountTwo.Accountnumber</td>
+                <td>@Model.AccountTwo.Balance kr</td>
+            </tr>
+        </table>
+
+    }
+</div>

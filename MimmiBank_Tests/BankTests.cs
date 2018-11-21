@@ -53,5 +53,53 @@ namespace MimmiBank.Tests
             Assert.False(result);
 
         }
+
+        [Fact]
+        public void Transfer_Test()
+        {
+            Account account1 = new Account();
+            {
+                account1.Accountnumber = 12345;
+                account1.Balance = 1259;
+            }
+
+            Account account2 = new Account();
+            {
+                account2.Accountnumber = 23456;
+                account2.Balance = 22998.4;
+            }
+
+            BankRepository bankRepository = new BankRepository();
+
+            var expected = true;
+            var actual = bankRepository.TransferBetweenAccounts(1000, account1, account2);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void TransferHigherAmount_Test()
+        {
+            Account account1 = new Account();
+            {
+                account1.Accountnumber = 12345;
+                account1.Balance = 1259;
+            }
+
+            Account account2 = new Account();
+            {
+                account2.Accountnumber = 23456;
+                account2.Balance = 22998.4;
+            }
+
+            BankRepository bankRepository = new BankRepository();
+
+            var expected = false;
+            var actual = bankRepository.TransferBetweenAccounts(8000, account1, account2);
+
+            Assert.Equal(expected, actual);
+        }
+
+
     }
 }

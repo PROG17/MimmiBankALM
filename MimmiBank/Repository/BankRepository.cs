@@ -28,6 +28,20 @@ namespace MimmiBank.Repository
             return true;
         }
 
+        public bool TransferBetweenAccounts(double sum, Account account1, Account account2)
+        {
+            if (sum > account1.Balance)
+            {
+                return false;
+            }
+            else
+            {
+                var transferedMoney = account1.Balance -= sum;
+                account2.Balance += transferedMoney;
+                return true;
+            }
+        }
+
 
         public List<Customer> GetListOfCustomers()
         {

@@ -11,5 +11,7 @@ namespace MimmiBank.Repository
         List<Customer> GetListOfCustomers();
         bool DepositAccount(double sum, Account account);
         bool WithdrawAccount(double sum, Account account);
+        bool TransferBetweenAccounts(double sum, Account account1, Account account2);
+
     }
 }

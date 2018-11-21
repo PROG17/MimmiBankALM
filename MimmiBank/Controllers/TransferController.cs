@@ -28,11 +28,16 @@ namespace MimmiBank.Controllers
         public IActionResult Transfer(TransferViewModel model)
         {
             var customers = _bankRepository.GetListOfCustomers();
-
             var account1 = customers.SelectMany(i => i.Accounts.Where(x => x.Accountnumber.Equals(model.AccountOne.Accountnumber))).SingleOrDefault();
-
             var account2 = customers.SelectMany(i => i.Accounts.Where(x => x.Accountnumber.Equals(model.AccountTwo.Accountnumber))).SingleOrDefault();
 
+            if (account1 == null  || account2 == null )
+            {
+                ModelState.AddModelError("", "Invalid account number, please enter a new one");
+                model.AccountOne = null;
+                model.AccountTwo = null;
+                return View("TransferToAccount", model);
+            }
 
             if (model.Sum == 0)
             {
